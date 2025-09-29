@@ -168,9 +168,149 @@
         // bleu - blanc - rouge 
         // Plusieurs façons possibles, l'objectif étant de trouver la façon la plus courte 
 
+        $a = "bleu";
+        $b = "blanc";
+        $c = "rouge";
+
+        echo $a . " - " . $b . " - " . $c . "<br>";
+        // On profite au max de notre syntaxe avec les guillemets interprétant les variables 
+        echo "$a - $b - $c <br>";
+
+        echo "<h2>Opérateurs arithmétiques</h2>";
+
+        $a = 10;
+        $b = 5;
+
+        // Addition :
+        echo $a + $b . "<br>";
+        // Soustraction :
+        echo $a - $b . "<br>";
+        // Multiplication :
+        echo $a * $b . "<br>";
+        // Division :
+        echo $a / $b . "<br>";
+        // Puissance :
+        echo $a ** $b . "<br>";
+        // Modulo :
+        echo $a % $b . "<br>";
+
+        $a += $b; // équivaut à écrire $a = $a + $b
+        $a -= $b;
+        $a *= $b;
+        $a /= $b;
+        $a **= $b;
+        $a %= $b;
+
+        echo "<h2>06 - Conditions & opérateurs de comparaison</h2>";
+
+        // if / elseif / else 
+        $x = 10;
+        $y = 5;
+        $z = 2;
+
+        if ($x > $y) { // Si la valeur de x est strictement supérieure à la valeur de y 
+            echo "Vrai, la valeur de x est bien strictement supérieure à la valeur de y<br>";
+        } else {
+            echo "Faux, la valeur de x n'est pas strictement supérieure à la valeur de y<br>";
+        }
+
+        // Plusieurs conditions obligatoires : AND => && 
+        if ($x > $y && $y > $z) {
+            echo "Ok pour les deux conditions<br>";
+        } else {
+            echo "L'une ou l'autre ou les deux conditions sont fausses<br>";
+        }
+
+        // L'une ou l'autre d'un ensemble de conditions : OR => ||
+        if ($x > $y || $y < $z) {
+            echo "Ok pour au moins une condition<br>";
+        } else {
+            echo "Toutes les conditions sont fausses<br>";
+        }
+
+        // Seulement l'une ou l'autre des conditions, si les deux sont vérifiées, c'est refusé ! 
+        if ($x > $y xor $y < $z) {
+            echo "Ok une seule et unique condition est bonne ! <br>";
+        } else {
+            echo "Toutes les conditions sont fausses ou toutes les conditions sont vraies<br>";
+        }
+
+        // if elseif else 
+        $x = 8;
+        $y = 5;
+        $z = 2;
+
+        if ($x == 8) { // Si x est égal à 8
+            echo "Réponse A<br>";
+        } elseif ($x != 10) { // Si x est différent de 10 
+            echo "Réponse B<br>";
+        } elseif ($y == $z) { // Si y est égal à z
+            echo "Réponse C<br>";
+        } else { // Sinon
+            echo "Réponse D<br>";
+        }
+
+        // Attention, lors de tests de conditions dans un bloc à plusieurs if, elseif, on sortira du bloc dès la première condition rencontrée
+        // C'est à dire que si les valeurs correspondent aux conditions de la réponse A et aussi de la réponse B, alors je sortirai de toute façon à la réponse A, sans aller tester la réponse B 
+
+        // Comparaison stricte 
+        $a = 1;
+        $b = "1";
+
+        // Comparaison des valeurs uniquement 
+        if ($a == $b) {
+            echo "Oui ces deux variables sont identiques EN VALEUR<br>";
+        } else {
+            echo "Non ces deux variables sont différentes EN VALEUR<br>";
+        }
+
+        if ($a === $b) {
+            echo "Oui ces deux variables sont identiques en valeur ET en type<br>";
+        } else {
+            echo "Non ces deux variables sont différentes en valeur ET/OU en type<br>";
+        }
+
+        /* 
+            Opérateurs de comparaison
+            --------------------------------------
+            =                               affectation (ce n'est pas un opérateur de comparaison, c'est une affectation)
+            ==                              est égal à 
+            !=                              est différent de 
+            ===                             est strictement égal à (valeur et type)
+            !==                             est strictement différent de (valeur et/ou type différent)
+            >                               strictement supérieur à 
+            >=                              supérieur ou égal 
+            <                               strictement inférieur à 
+            <=                              inférieur ou égal 
+        */
+
+        // Autres possibilités de syntaxe pour les if 
+
+        if ($a === $b) {
+            echo "Oui ces deux variables sont identiques en valeur ET en type<br>";
+        } // Si on ne veut pas gérer le else, il est possible de l'omettre 
+
+        if ($a === $b) echo "Oui ces deux variables sont identiques en valeur ET en type<br>";
+        else echo "Non ces deux variables sont différentes en valeur ET/OU en type<br>";
+        // On peut ne pas mettre les accolades, par contre l'instruction sera limitée à une seule ligne de code après la condition
+
+        if ($a === $b) :
+            echo "Oui ces deux variables sont identiques en valeur ET en type<br>";
+        else :
+            echo "Non ces deux variables sont différentes en valeur ET/OU en type<br>";
+        endif;
+        // Ici syntaxe où les accolades sont remplacées par des ":" et un "endif" en fin de bloc
+        // On utilisera surtout cette syntaxe lorsque l'on ouvre PHP dans de gros blocs HTML pour améliorer la lisibilité et compréhension du code 
+        // Il est plus clair de voir un endif; au milieu du html plutôt que de voir une simple accolade fermante 
+
+        // Ecriture ternaire, pour nos if les plus courts ! 
+
+        // action (condition) ? .......... if......... : .............else............
+        echo ($a === $b) ? "Oui les deux var sont identiques<br>" : "Non, les deux var sont différentes<br>";
+        // On utilisera le if ternaire lorsque l'action du if et du else est la même ! Souvent un echo ou une affectation dans une variable, dont la valeur sera différente en fonction de la condition du if ! 
+        // Pas de elseif possible pour l'écriture ternaire 
+
         
-
-
 
 
         ?>
