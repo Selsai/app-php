@@ -310,7 +310,117 @@
         // On utilisera le if ternaire lorsque l'action du if et du else est la même ! Souvent un echo ou une affectation dans une variable, dont la valeur sera différente en fonction de la condition du if ! 
         // Pas de elseif possible pour l'écriture ternaire 
 
+        // Plusieurs outils de contrôle que l'on manipule régulièrement avec les if en PHP 
+        // isset() & empty()
+        // isset() permet de savoir si une information existe (savoir si une variable est bien présente)
+        // empty() permet de savoir si une information est vide (on testera toujours empty sur une variable déjà existante et donc préalablement testée avec isset())
+
+        // isset() 
+        // - la variable existe on reçoit : true
+        // - la variable n'est pas on reçoit : false 
+
+        // empty() 
+        // - la variable est vide on reçoit : true 
+        // - la variable n'est pas vide on reçoit : false 
+
+        $pseudo = "Bob";
+        // Ici je m'assure de démarrer mon traitement UNIQUEMENT si la variable $pseudo existe bel et bien ! 
+        if (isset($pseudo)) {
+            echo "J'ai bien reçu le pseudo : $pseudo <br>";
+        } else {
+            echo "Attention la variable pseudo n'existe pas ! <br>";
+        }
+
+        $password = "coucou";
+        if (empty($password)) {
+            // Ici on utilisera empty dans un second niveau de vérification pour vérifier par exemple des saisies obligatoires d'un formulaire 
+            echo "Attention, il est obligatoire de saisir le password ! <br>";
+        } else {
+            echo "Tout va bien<br>";
+        }
+
+        // La syntaxe ci dessous c'est un test isset() sur $pseudoForm, si elle n'existe pas, alors on affecte la valeur "Pas de pseudo", c'est une sorte de ternaire mélangé à un test isset()
+        $pseudo = $pseudoForm ?? "Pas de pseudo";
+
+        // Valeurs considérées comme vide : null, 0, 0.0, "", '', array vide, false 
+
+
+        echo "<h2>Conditions switch</h2>";
+        // Autre outil permettant de mettre en place des conditions 
+
+        // Avec une condition switch on donne un ensemble de cas possible 
+        // Le scénario d'utilisation du switch est que l'on teste différente valeur d'une seule et même variable
+        // La syntaxe ne se prête pas du tout à tester des conditions complexes 
+
+        $couleur = "jaune";
+        switch ($couleur) {
+            case "bleu":
+                echo "Vous aimez le bleu<br>";
+                break;
+            case "rouge":
+                echo "Vous aimez le rouge<br>";
+                break;
+            case "vert":
+                echo "Vous aimez le vert<br>";
+                break;
+            default: // équivalent au else 
+                echo "Vous n'aimez ni le bleu, ni le rouge, ni le vert<br>";
+                break;
+        }
+
+        // EXERCICE : refaire cette condition switch, mais, en if / elseif / else  
+
+        $couleur = "jaune";
+
+
+        if ($couleur == "bleu") echo "Vous aimez le bleu<br>";
+        elseif ($couleur == "rouge") echo "Vous aimez le rouge<br>";
+        elseif ($couleur == "vert") echo "Vous aimez le vert<br>";
+        else echo "Vous n'aimez ni le bleu, ni le rouge, ni le vert <br>";
+
+        // Ici notre consigne se prête parfaitement à l'utilisation de la syntaxe sans accolades 
+
+        echo "<h2>08 - Fonctions prédéfinies</h2>";
+
+        // Ce sont des fonctions déjà présentes dans le langage, on se contente de les utiliser, pas besoin de redévelopper tous nos outils
+        // Par exemple, gettype(), isset(), empty()
+        // Liste des fonctions PHP : https://www.php.net/manual/fr/indexes.functions.php
+
+        // Pour utiliser une fonction, nous devons connaitre le nombre d'argument ainsi que leurs types et leur ordre 
+        // Et surtout quelle sera la valeur de retour de cette fonction 
+
+        // Quelques exemples : 
+
+        // Fonction date() 
+        // Permet d'afficher une date au format de mon choix 
+
+        echo "Nous sommes le : " . date("d/m/Y") . "<br>";
+        echo "Copyright Pierra &copy; - " . date("Y") . "<br>";
+
+
+        echo date("d/m/Y", strtotime("2020-01-15")) . "<br>";
+        // Argument à fournir : une chaine de caractère représentant le format de date attendu
+        // Deuxième argument facultatif : un timestamp pour préciser une date spécifique, attention, il est attendu en format timestamp (nombre de secondes écoulées depuis le 1er Janvier 1980) donc il faudra le transformer en timestamp si jamais il est en format date string 
+
+        // Fonctions de traitement de chaine de caractères 
+
+        // strlen() 
+        // Fonction prédéfinie permettant de compter le nombre de caractères dans une chaine - ATTENTION, en fait c'est le nombre d'octets qui est compté !
+
+        echo strlen("bônjoùr");
+        // ATTENTION strlen() me retourne le nombre d'octets ! et non pas le nombre de caractères réel ! Cela peut me poser des soucis sur mes vérifications de taille de string, par exemple à l'inscription, pseudo pas trop court pas trop long, password assez long
+
+        echo "<br>";
+        // iconv_strlen() 
+        // Fonction prédéfinie permettant de compter réeelement le nombre de caractères d'une chaine
+        // Pour toutes vérifications de saisies d'un formulaire, on s'intéressera réellement au nombre de caractères d'une chaine plutôt qu'au "poids" en octets, on utilisera donc toujours iconv_strlen 
+        echo iconv_strlen("bônjoùr");
+
         
+
+
+
+
 
 
         ?>
