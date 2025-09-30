@@ -645,28 +645,213 @@
         separateur();
 
         // Exercice ...
-        for($i = 0; $i < 10 ; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             echo "$i - ";
         }
 
+        separateur();
         // Résultat actuel : 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 -
         // Résultat attendu : 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9
+        for ($i = 0; $i < 10; $i++) {
+            if ($i == 9) {
+                echo "$i";
+            } else {
+                echo "$i - ";
+            }
+        }
+
+        separateur();
 
         // Exercice 1
         // Afficher des nombres allant de 1 à 100.
+        for ($i = 1; $i < 101; $i++) {
+            if ($i == 100) {
+                echo "$i";
+            } else {
+                echo "$i - ";
+            }
+        }
 
+        separateur();
         // Exercice 2
         // Afficher des nombres allant de 1 à 100 avec le chiffre 50 en rouge.
+        for ($i = 0; $i < 101; $i++) {
+            if ($i == 50) {
+                echo "<span style='color: red; font-size: 20px; font-style: bold;'>" . "$i </span>";
+            } else {
+                echo "$i ";
+            }
+        }
 
+        separateur();
         // Exercice 3
         // Afficher des nombres allant de 2000 à 1930.
+        for ($i = 2000; $i >= 1930; $i--) {
+            echo "$i ";
+        }
 
         // Exercice 4
         // Afficher le titre suivant 10 fois : <h1>Titre à afficher 10 fois</h1>
+        for ($i = 0; $i < 10; $i++) {
+            echo "<h1>Titre à afficher 10 fois</h1>";
+        }
 
+        separateur();
         // Exercice 5
         // Afficher le titre suivant "<h1>Je m'affiche pour la Nème fois</h1>".
         // Remplacer le N avec la valeur de $i (tour de boucle).
+        for ($i = 1; $i < 11; $i++) {
+            echo "<h1>Je m'affiche pour la $i" . ($i == 1 ? "ère" : "ème") . " fois</h1>";
+        }
+
+        echo "<h2>10 - Tableaux de données ARRAY</h2>";
+        // Array est un nouveau type de données 
+        // Une variable de type de array, nous permet de conserver un ensemble de valeur 
+        // Un array c'est toujours composé de deux colonnes 
+        // Une colonne représente l'index/clé/id 
+        // Une colonne qui représente la valeur associée à cet index 
+
+        // Pour piocher dans un tableau, on appelera l'index 
+
+        // Déclaration d'un tableau array 
+        $tabJours = array("lundi", "mardi", "mercredi", "jeudi", "vendredi");
+        // $tabJours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi"];
+
+        // echo $tabJours; // Je ne peux pas faire un echo d'un array entier 
+
+        // Si je veux avoir des informations sur un array, (en phase de developpement)
+        // Je peux utiliser var_dump ou print_r 
+
+        // Le var_dump et le print_r me permettent de visualiser le contenu de mon array à l'instant T
+        // On remarquera aussi les id présents pour chacune de nos valeurs, si je ne spécifie rien, alors automatiquement il les indexera numériquement 
+        var_dump($tabJours);
+        echo "<pre>";
+        print_r($tabJours);
+        echo "</pre>";
+        //         Array
+        // (
+        //     [0] => lundi
+        //     [1] => mardi
+        //     [2] => mercredi
+        //     [3] => jeudi
+        //     [4] => vendredi
+        // )
+
+        // Je ne peux pas réellement afficher un array entier avec un echo, par contre, je peux appeler un indice de ce tableau, pour cela, j'appelle l'indice en question entre crochets
+        // Les crochets représenteront toujours la syntaxe associée aux tableaux array 
+        echo $tabJours[2];
+
+        // Quelques fonctions sur les array 
+        // is_array : permet de savoir si la variable est un array ou pas 
+        // array_push() pour ajouter des éléments dans un tableau 
+        array_push($tabJours, "samedi", "dimanche");
+        var_dump($tabJours);
+
+        // Autres façons de déclarer un array 
+        $tabMois = ["janvier", "fevrier", "mars", "avril"];
+
+        var_dump($tabMois);
+
+        $tabMois[] = "mai";
+        $tabMois[] = "juin";
+        var_dump($tabMois);
+
+        $tabFruits[] = "pommes"; // La première ligne crée le tableau
+        var_dump($tabFruits);
+        $tabFruits[] = "poires";
+        $tabFruits[] = "bananes";
+        $tabFruits[] = "mangues";
+        $tabFruits[] = "cocos";
+
+        // Pour connaitre la taille d'un tableau : 
+        // count() ou sizeof() 
+        echo "Taille du tableau des fruits : " . count($tabFruits) . "<br>";
+        echo "Taille du tableau des fruits : " . sizeof($tabFruits) . "<br>";
+
+        // Affichage du tableau des fruits dans une liste ul li 
+
+        separateur();
+
+        // Ici je profite d'avoir des indices numériques pour faire une boucle à compteur numérique pour piocher un à un les valeurs de mon array
+        echo "<ul>";
+        for ($i = 0; $i < count($tabFruits); $i++) {
+            echo "<li>" . $tabFruits[$i] . "</li>";
+        }
+        echo "</ul>";
+
+        separateur();
+
+        // Il est possible en PHP d'avoir des indices d'array en string 
+        $membre = array("pseudo" => "Admin", "email" => "admin@gmail.com", "age" => 30);
+
+        var_dump($membre);
+
+        // Pour rajouter des infos dans un array, en nommant l'index 
+        $membre["ville"] = "Paris";
+        $membre["cp"] = 75000;
+        $membre["adresse"] = "1 rue chose";
+
+        // Pour piocher dans un array avec les id nommé, pas de soucis, juste il faudra mettre l'indice entre "" ou '' 
+        echo $membre["pseudo"];
+        separateur();
+        // Sur ce dernier tableau, les index en toutes lettres ne me permettent pas de faire une boucle for numérique pour parcourir le tableau...
+
+        // Pas grave ! On a un nouvel outil de boucle foreach() qui passe tout simplement sur chacun des éléments d'un tableau array sans que j'ai besoin d'en connaître la taille 
+
+        // Deux syntaxes pour le foreach 
+
+        // Première syntaxe, récupère uniquement les valeurs de chaque indice 
+        foreach ($membre as $valeur) { // Une seule variable après le mot clé obligatoire AS, cette variable reçoit la valeur en corus à chaque tour de boucle 
+            echo "- $valeur <br>";
+        }
+
+        // Deuxième syntaxe, récupère les valeurs MAIS AUSSI le nom des indices 
+        // L'intérêt de récupérer les indices n'est pas forcément de les afficher, mais plutôt pour appliquer un traitement différent en fonction de l'indice
+        // Par exemple ci dessous je décide d'ignorer l'adresse et de ne pas l'afficher 
+        // Ou encore une image, je n'en fais pas un simple echo, j'ai besoin de l'ajouter dans une balise <img>
+        foreach ($membre as $key => $value) {
+            // if ($key == "adresse") {
+            //     echo "- $key : données privées";
+            // } else {
+            //      echo "- $key : $value <br>";
+            // }
+
+            if ($key != "adresse") {
+                echo "- $key : $value <br>";
+            }
+        }
+
+        // Il est possible d'avoir un array dans un autre array, pas de limite à ça 
+        // C'est ce qu'on appelle un array multidimensionnel 
+
+        $data[] = array("pseudo" => "Pierra", "poste" => "formateur", "age" => 37);
+        $data[] = array("pseudo" => "Polo", "poste" => "dev", "age" => 27);
+        $data[] = array("pseudo" => "Boby", "poste" => "resto", "age" => 18);
+
+        var_dump($data);
+
+                //         array (size=3)
+                //   0 => 
+                //     array (size=3)
+                //       'pseudo' => string 'Pierra' (length=6)
+                //       'poste' => string 'formateur' (length=9)
+                //       'age' => int 37
+                //   1 => 
+                //     array (size=3)
+                //       'pseudo' => string 'Polo' (length=4)
+                //       'poste' => string 'dev' (length=3)
+                //       'age' => int 27
+                //   2 => 
+                //     array (size=3)
+                //       'pseudo' => string 'Boby' (length=4)
+                //       'poste' => string 'resto' (length=5)
+                //       'age' => int 18
+
+        // Pour piocher dans un array à plusieurs niveau, on procède par succession de crochets, on rentre dans les niveaux un par un  
+        // Si je veux afficher Boby, j'appelle d'abord l'indice 2, puis ensuite l'indice pseudo 
+        echo $data[2]["pseudo"];
+
+
 
         ?>
 
