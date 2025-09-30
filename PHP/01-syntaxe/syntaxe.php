@@ -436,7 +436,8 @@
         // Ici une fonction me permettant d'afficher 3 <hr> pour faire des séparations dans mon code 
 
         // déclaration 
-        function separateur() {
+        function separateur()
+        {
             echo "<hr><hr><hr>";
         }
 
@@ -444,7 +445,8 @@
         separateur(); // Ici à l'exécution de notre fonction, <hr><hr><hr>  s'exécute sur notre page 
 
         // Fonction avec des arguments/params 
-        function dire_bonjour($qui) {
+        function dire_bonjour($qui)
+        {
             return "Bonjour $qui, bienvenue sur notre site <hr>";
             // On utilisera toujours un return dans nos fonctions, ensuite à nous de décider si j'echo ce return ou si je m'en sers pour un traitement quelconque 
         }
@@ -455,7 +457,8 @@
 
 
         // Fonction permettant de calculer le prix TTC 
-        function applique_tva($prix) {
+        function applique_tva($prix)
+        {
             return "Le montant TTC pour le prix $prix" . "€ est de : " . ($prix * 1.2) . "€<hr>";
         }
 
@@ -468,7 +471,8 @@
 
         // Ici le fait de donner une valeur à un param, le rends facultatif !
         // Si le taux n'est pas fourni à l'exécution de la fonction, alors c'est la valeur spécifiée ici qui sera prise en compte
-        function applique_tva_taux($prix, $taux = 20) {
+        function applique_tva_taux($prix, $taux = 20)
+        {
             return "Le montant TTC pour le prix $prix" . "€ est de : " . ($prix * (1 + $taux / 100)) . "€<hr>";
         }
 
@@ -477,7 +481,8 @@
 
 
         // Fonction meteo 
-        function meteo($saison, $temperature) {
+        function meteo($saison, $temperature)
+        {
             $debut = "Nous sommes en $saison";
             $suite = " et il fait $temperature degré(s)<hr>";
 
@@ -493,6 +498,109 @@
 
         // Exercice : Refaire cette fonction en gérant "en" ou "au" selon la saison et le "s" ou pas sur les degrés
 
+
+        // Ici une des solutions les plus courtes avec un ternaire 
+        function meteo2($saison, $temperature)
+        {
+            $s = ($temperature > -2  && $temperature < 2) ? "" : "s";
+            $auen = ($saison == "printemps") ? "au" : "en";
+
+            return "Nous sommes $auen $saison et il fait $temperature degré$s <hr>";
+        }
+
+
+        function meteo3($saison, $temperature)
+        {
+
+            if ($saison == "printemps") {
+                $debut = "Nous sommes au $saison";
+            } else {
+                $debut = "Nous sommes en $saison";
+            }
+
+            if ($temperature == 1 || $temperature == -1 || $temperature == 0) {
+                $suite = " et il fait $temperature degré<hr>";
+            } else {
+                $suite = " et il fait $temperature degrés<hr>";
+            }
+
+
+            return $debut . $suite;
+        }
+
+        function meteo4($saison, $temperature)
+        {
+            $s = (abs($temperature) <= 1) ? "" : "s";
+            $auen = ($saison == "printemps") ? "au" : "en";
+
+            return "Nous sommes $auen $saison et il fait $temperature degré$s <hr>";
+        }
+
+
+        separateur();
+
+        echo meteo2("automne", 15);
+        echo meteo2("hiver", 1);
+        echo meteo2("printemps", 20);
+        echo meteo2("été", 30);
+
+        separateur();
+
+        echo meteo4("automne", 15);
+        echo meteo4("hiver", 1);
+        echo meteo4("printemps", 20);
+        echo meteo4("été", 30);
+
+        // Environnement (scope)
+        // Global : le script complet 
+        // Local : à l'intérieur d'une fonction/méthode/classe
+
+        separateur();
+
+        // L'existence d'une variable dépend de l'environnement où on la déclare 
+
+        $animal = "chat"; // Variable déclarée dans le scope global
+
+        echo $animal . "<br>"; // chat
+
+        function foret()
+        {
+            $animal = "chien"; // Variable déclarée dans le scope local
+            return $animal; // On retourne ici non pas la variable mais la valeur contenue dans cette variable à savoir "chien"
+        }
+
+        echo $animal . "<br>"; // chat on appelle la variable globale
+        foret(); // Ici rien ne se passe, le return n'est pas traitée 
+        echo $animal . "<br>"; // chat car la variable globale n'a pas été modifiée 
+        echo foret() . "<br>"; // chien  car on echo la valeur retournée par la fonction foret() (c'est à dire la valeur de $animal dans le scope local)
+        echo $animal . "<br>"; // chat  toujours chat, car c'est la valeur de la var $animal locale qui sort de la fonction et non pas la variable elle même
+        $animal = foret(); // Uniquement ici, j'aurai un changement de valeur de la var globale par le string retourné par la fonction foret()
+        echo $animal . "<br>"; // chien
+
+        $pays = "France"; // Variable déclarée dans l'espace global 
+
+        function affiche_pays()
+        {
+            global $pays; // Grâce à ce mot clé global, il est possible de récupérer une variable de l'espace global pour la ramener dans la fonction
+            $pays = "Japon";
+        }
+
+        echo $pays; // France 
+
+        affiche_pays(); // Exécution de la fonction, elle récupère la variable global $pays et change sa valeur par Japon
+
+        echo $pays; // Japon
+
+        separateur();
+
+        // Il est possible de typer les arguments d'une fonction ainsi que le return 
+        function identite(string $nom, int $age = 30, int $cp = 75): string 
+        {
+            return "$nom a $age ans et habite dans le $cp<br>";
+        }
+
+        echo identite("Pierra", 37, 64);
+        echo identite("Pierra", cp: 64);
 
         ?>
 
