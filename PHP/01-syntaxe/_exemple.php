@@ -1,0 +1,3 @@
+    <h3>Ici fichier partials exemple.php</h3>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus sed sit dolore possimus laudantium tempore eius facere nesciunt veritatis. Expedita maxime iusto eveniet consequuntur sint corporis. Beatae eveniet id excepturi.
+    Necessitatibus harum nihil, nostrum dolores facere ratione praesentium illo cumque facilis doloremque a libero error perferendis quo laboriosam dicta est cupiditate, suscipit maxime quam! Veniam ducimus ex deserunt deleniti laboriosam?</p>

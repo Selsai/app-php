@@ -830,26 +830,58 @@
 
         var_dump($data);
 
-                //         array (size=3)
-                //   0 => 
-                //     array (size=3)
-                //       'pseudo' => string 'Pierra' (length=6)
-                //       'poste' => string 'formateur' (length=9)
-                //       'age' => int 37
-                //   1 => 
-                //     array (size=3)
-                //       'pseudo' => string 'Polo' (length=4)
-                //       'poste' => string 'dev' (length=3)
-                //       'age' => int 27
-                //   2 => 
-                //     array (size=3)
-                //       'pseudo' => string 'Boby' (length=4)
-                //       'poste' => string 'resto' (length=5)
-                //       'age' => int 18
+        //         array (size=3)
+        //   0 => 
+        //     array (size=3)
+        //       'pseudo' => string 'Pierra' (length=6)
+        //       'poste' => string 'formateur' (length=9)
+        //       'age' => int 37
+        //   1 => 
+        //     array (size=3)
+        //       'pseudo' => string 'Polo' (length=4)
+        //       'poste' => string 'dev' (length=3)
+        //       'age' => int 27
+        //   2 => 
+        //     array (size=3)
+        //       'pseudo' => string 'Boby' (length=4)
+        //       'poste' => string 'resto' (length=5)
+        //       'age' => int 18
 
         // Pour piocher dans un array à plusieurs niveau, on procède par succession de crochets, on rentre dans les niveaux un par un  
         // Si je veux afficher Boby, j'appelle d'abord l'indice 2, puis ensuite l'indice pseudo 
         echo $data[2]["pseudo"];
+
+        echo "<h2>11 - Inclusion de fichiers</h2>";
+        // Création d'un fichier _exemple.php 
+        // On ajoute du contenu dans ce fichier 
+
+        // include & require : ce sont deux outils qui nous permettent de ramener le contenu d'un autre fichier à l'intérieur de celui ci
+        // L'ajout du fichier va se faire à l'endroit de l'appel d'une de ces deux fonctions  
+
+        // Pour leurs version _once, le système vérifie si le fichier n'est pas déjà présent sur la page, auquel cas il ne sera pas ajouté une seconde fois 
+
+        // Différences entre include et require : La gestion des erreurs 
+            // une erreur sur include me génère un warning, le code continue de s'exécuter
+            // une erreur sur require me génère une fatal error, le code s'arrête 
+
+        // Généralement sauf cas spécifiques on utilisera toujours les versions _once et la plupart du temps require, sauf pour les _partials peu important (zone pub par exemple)
+
+        echo "<b>Premier appel avec include : </b><hr>";
+        include "_exemple.php"; // l'intégralité du contenu du fichier exemple est répercuté ici 
+        separateur();
+
+        echo "<b>Deuxième appel avec include_once : </b><hr>";
+        include_once "_exemple.php"; // Le fichier n'est pas réinclus car déjà présent sur la page 
+        separateur();
+
+        echo "<b>Troisième appel avec require : </b><hr>";
+        require "_exemple.php"; // Le fichier est réinclus car ce n'est pas une version _once
+        separateur();
+
+        echo "<b>Quatrième appel avec require_once : </b><hr>";
+        require_once "_exemple.php"; // Le fichier n'est pas réinclus car déjà présent sur la page 
+        separateur();
+
 
 
 
