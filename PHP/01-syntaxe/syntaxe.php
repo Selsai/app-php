@@ -416,11 +416,82 @@
         // Pour toutes vérifications de saisies d'un formulaire, on s'intéressera réellement au nombre de caractères d'une chaine plutôt qu'au "poids" en octets, on utilisera donc toujours iconv_strlen 
         echo iconv_strlen("bônjoùr");
 
-        
+        // deux fonctions de vérification var_dump et print_r 
+        // Grâce à ces outils on peut en savoir plus sur la valeur d'un élément ou d'une action
+        // Pour une variable, on a les infos de la valeur, du type, de la longueur
+        // Pour des types avancés comme les array et les objets on aura des infos sur le contenu exact du array et des propriétés des objets 
+        // Sur une action, on sera capable aussi de voir le résultat booléen (uniquement avec var_dump) true ou false sur un lancement de fonction par exemple
+        var_dump(isset($coeur));
+        print_r($couleur);
+
+        // Il existe ensuite des fonctions de vérification de type, is_integer, is_array, is_string 
+
+        // Des fonctions de formatage de texte comme ucfirst() met la première lettre d'un string en majuscule 
 
 
+        echo "<h2>08 - Fonctions utilisateur</h2>";
+
+        // Définies par le développeur, on développe nos propres fonctions 
+
+        // Ici une fonction me permettant d'afficher 3 <hr> pour faire des séparations dans mon code 
+
+        // déclaration 
+        function separateur() {
+            echo "<hr><hr><hr>";
+        }
+
+        // exécution 
+        separateur(); // Ici à l'exécution de notre fonction, <hr><hr><hr>  s'exécute sur notre page 
+
+        // Fonction avec des arguments/params 
+        function dire_bonjour($qui) {
+            return "Bonjour $qui, bienvenue sur notre site <hr>";
+            // On utilisera toujours un return dans nos fonctions, ensuite à nous de décider si j'echo ce return ou si je m'en sers pour un traitement quelconque 
+        }
+
+        echo dire_bonjour("Pierre-Alexandre");
+        $prenom = "Jimmy";
+        echo dire_bonjour($prenom);
 
 
+        // Fonction permettant de calculer le prix TTC 
+        function applique_tva($prix) {
+            return "Le montant TTC pour le prix $prix" . "€ est de : " . ($prix * 1.2) . "€<hr>";
+        }
+
+        echo applique_tva(100);
+
+        // Exercice : Refaire la fonction applique TVA mais en permettant de choisir aussi le taux à appliquer, c'est à dire je veux pouvoir saisir le prix puis le taux, par exemple applique_tva(100,10) si je souhaite appliquer une taxe de 10% au prix 100€
+
+        // Et dans un second temps, rendre cette saisie du taux facultative, si le taux n'est pas saisi alors on appliquera le taux par défaut de 20%
+
+
+        // Ici le fait de donner une valeur à un param, le rends facultatif !
+        // Si le taux n'est pas fourni à l'exécution de la fonction, alors c'est la valeur spécifiée ici qui sera prise en compte
+        function applique_tva_taux($prix, $taux = 20) {
+            return "Le montant TTC pour le prix $prix" . "€ est de : " . ($prix * (1 + $taux / 100)) . "€<hr>";
+        }
+
+        echo applique_tva_taux(100, 10);
+        echo applique_tva_taux(1000);
+
+
+        // Fonction meteo 
+        function meteo($saison, $temperature) {
+            $debut = "Nous sommes en $saison";
+            $suite = " et il fait $temperature degré(s)<hr>";
+
+            return $debut . $suite;
+        }
+
+        separateur();
+
+        echo meteo("automne", 15);
+        echo meteo("hiver", 0);
+        echo meteo("printemps", 20);
+        echo meteo("été", 30);
+
+        // Exercice : Refaire cette fonction en gérant "en" ou "au" selon la saison et le "s" ou pas sur les degrés
 
 
         ?>
