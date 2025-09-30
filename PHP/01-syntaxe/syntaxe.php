@@ -594,13 +594,79 @@
         separateur();
 
         // Il est possible de typer les arguments d'une fonction ainsi que le return 
-        function identite(string $nom, int $age = 30, int $cp = 75): string 
+        function identite(string $nom, int $age = 30, int $cp = 75): string
         {
             return "$nom a $age ans et habite dans le $cp<br>";
         }
 
         echo identite("Pierra", 37, 64);
         echo identite("Pierra", cp: 64);
+
+        echo "<h2>09 - Structure itérative : Boucles </h2>";
+
+        // Boucle for = boucle avec compteur numérique 
+        // Besoin de 3 informations 
+        // - Une valeur de départ (compteur)
+        // - Condition d'entrée 
+        // - Incrémentation ou décrémentation 
+
+        // for (valeurDeDepart; condition; incrementation) {}
+        for ($i = 0; $i < 10; $i++) {
+            echo "$i ";
+        }
+
+        separateur();
+
+        // Boucle while = boucle en fonction d'une condition (pas forcément numérique) 
+        // while() {}
+        $i = 0; // Initialisation d'un compteur à la main ici
+        while ($i < 10) {
+            echo "$i ";
+            $i++; // Incrémentation à la main 
+        }
+
+
+        // Il est possible de sortir d'une boucle avec le mot clé break
+        $i = 0; // Initialisation d'un compteur à la main ici
+        while ($i < 100) {
+            echo "$i ";
+            if ($i == 20) {
+                break; // On sort de la boucle
+            }
+            $i++; // Incrémentation à la main 
+        }
+
+        separateur();
+
+        $i = 0;
+        do {
+            echo $i;
+        } while ($i > 0);
+        separateur();
+
+        // Exercice ...
+        for($i = 0; $i < 10 ; $i++) {
+            echo "$i - ";
+        }
+
+        // Résultat actuel : 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 -
+        // Résultat attendu : 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9
+
+        // Exercice 1
+        // Afficher des nombres allant de 1 à 100.
+
+        // Exercice 2
+        // Afficher des nombres allant de 1 à 100 avec le chiffre 50 en rouge.
+
+        // Exercice 3
+        // Afficher des nombres allant de 2000 à 1930.
+
+        // Exercice 4
+        // Afficher le titre suivant 10 fois : <h1>Titre à afficher 10 fois</h1>
+
+        // Exercice 5
+        // Afficher le titre suivant "<h1>Je m'affiche pour la Nème fois</h1>".
+        // Remplacer le N avec la valeur de $i (tour de boucle).
 
         ?>
 
